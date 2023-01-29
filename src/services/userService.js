@@ -1,9 +1,12 @@
+import api from "./baseUrl"
+
 async function checkAuthenticatedUser(pUser){
-    const response = await fetch('http://localhost:8089/api/v1/users/check', {
-        method: 'post',
-        body: JSON.stringify(pUser),
-        headers: { "Content-Type": "application/json" }
-    })
-    return await response.json();
+    const response = await api.post("http://localhost:8089/api/v1/users/check",pUser)
+    return await response.data;
 }
-export {checkAuthenticatedUser}
+const getUserName = async(pUserID) => {
+    const response = await api.get(`/users/${pUserID}`)
+    return response.data
+    
+}
+export {checkAuthenticatedUser,getUserName} 

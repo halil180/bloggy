@@ -13,6 +13,7 @@ import {
 import Home from './pages/Home';
 import Posts from './pages/Posts';
 import CreatePost from './pages/CreatePost';
+import Post from './pages/Post';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path:"create",
         element:<CreatePost/>
+      },
+      {
+        path:"post/:postId",
+        element:<Post/>
       }
     ]
   },

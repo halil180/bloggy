@@ -5,7 +5,7 @@ import * as userService from "../services/userService";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-    const [userId,setUserId] = useState(null)
+  const [userId, setUserId] = useState(null)
   const {
     user,
     isAuthenticated,
@@ -13,20 +13,20 @@ export const UserProvider = ({ children }) => {
     // logout,
   } = useAuth0();
 
-      const checkUser = async (pUser) => {
-      const status = await userService.checkAuthenticatedUser(pUser);
-       console.log(status)
-       setUserId(status.userId)
-    }  
+  const checkUser = async (pUser) => {
+    const status = await userService.checkAuthenticatedUser(pUser);
+    // console.log(status)
+    setUserId(status.userId)
+  }
   useEffect(() => {
-    if(isAuthenticated){
-      console.log(user);
+    if (isAuthenticated) {
+      // console.log(user);
       checkUser(user);
     }
-  }, [isAuthenticated]);
+  }, [user]);
 
   return (
-    <UserContext.Provider value={{ user,userId }}>
+    <UserContext.Provider value={{ user, userId }}>
       {children}
     </UserContext.Provider>
   );
